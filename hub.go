@@ -168,3 +168,4 @@ func (hub *hub) Publish(msg Msg) error {
 func (hub *hub) Stats() string {
 	return fmt.Sprintf("sub_count: %d, msg_pub: %d, msg_sent: %d", hub.sub_count, hub.msg_pub, hub.msg_sent)
 }
+

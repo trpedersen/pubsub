@@ -2,17 +2,18 @@ package pubsub
 
 import (
 	"fmt"
-	rand "github.com/trpedersen/rand"
 	"log"
 	"runtime"
 	"sync"
 	"testing"
+
+	rand "github.com/trpedersen/rand"
 )
 
 const (
-	TOPICS                = 1
-	MSG_PER_TOPIC         = 1000000
-	SUBSCRIBERS_PER_TOPIC = 1 //00
+	TOPICS                = 100
+	MSG_PER_TOPIC         = 100
+	SUBSCRIBERS_PER_TOPIC = 10 //00
 )
 
 func merge(done <-chan struct{}, cs ...<-chan Msg) <-chan Msg {
@@ -112,8 +113,9 @@ func consume(done <-chan struct{}, subscription Subscription) <-chan Msg {
 func TestPubSub(t *testing.T) {
 
 	nCPU := runtime.NumCPU()
+	log.Println("nCPU: ", nCPU)
 
-	runtime.GOMAXPROCS(nCPU)
+	//runtime.GOMAXPROCS(nCPU)
 
 	hub, _ := NewHub()
 
